@@ -13,8 +13,9 @@ const Login = () => {
 
   useEffect(() => {
     const token = getToken()
+
     if (token) router.push('/')
-  }, [])
+  }, [router])
 
   const onSubmit = (e) => {
     e.preventDefault()

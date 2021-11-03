@@ -9,7 +9,7 @@ const Logout = () => {
   useEffect(() => {
     removeToken()
     router.push('/login')
-  }, [])
+  }, [router])
 
   return null
 }
