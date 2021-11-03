@@ -1,0 +1,14 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+
+.form {
+  margin: 40px;
+  max-width: 500px;
+  flex-direction: column;
+  justify-content: flex-start;
+}

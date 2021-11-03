@@ -1,0 +1,17 @@
+.items {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.item {
+  margin: 20px 10px;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0px 2px 4px rgb(0 0 0 / 50%);
+}
