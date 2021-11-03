@@ -32,3 +32,7 @@
   height: 48px;
   flex-shrink: 0;
 }
+
+.navigationItem {
+  margin: 0 0.5em;
+}

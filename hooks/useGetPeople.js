@@ -3,7 +3,7 @@ import { getToken } from '../shared/handleToken'
 
 import axios from 'axios'
 
-export const useGetLikes = () => {
+export const useGetPeople = () => {
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -12,9 +12,10 @@ export const useGetLikes = () => {
   useEffect(() => {
     const fn = async () => {
       try {
-        await new Promise((resolve) => setTimeout(resolve, 1000))
         setLoading(true)
-        const response = await axios.get(`/api/likes?token=${token}`)
+        const response = await axios.get(`/api/people?token=${token}`)
+
+        console.log(response.data)
         setData(response.data.data)
       } catch (error) {
         console.error(error)

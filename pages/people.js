@@ -1,10 +1,10 @@
-import { useGetLikes } from '../hooks/useGetLikes'
+import { useGetPeople } from '../hooks/useGetPeople'
 import { Layout } from '../components/Layout'
 import { withAuth } from '../components/withAuth'
 import { Likes } from '../components/Likes'
 
-const LikesPage = () => {
-  const { data, error, loading } = useGetLikes()
+const PeoplePage = () => {
+  const { data, error, loading } = useGetPeople()
 
   if (error)
     return (
@@ -34,4 +34,4 @@ const LikesPage = () => {
   )
 }
 
-export default withAuth(LikesPage)
+export default withAuth(PeoplePage)
