@@ -17,6 +17,9 @@ export const Layout = ({ children }) => (
         <Link href="/people">
           <a className={s.navigationItem}>people</a>
         </Link>
+        <Link href="/all-people">
+          <a className={s.navigationItem}>all</a>
+        </Link>
         <Link href="/likes">
           <a className={s.navigationItem}>likes</a>
         </Link>

@@ -2,9 +2,7 @@ import { useEffect, useState } from 'react'
 import { getToken } from '../shared/handleToken'
 import Localbase from 'localbase'
 
-import axios from 'axios'
-
-export const useGetLikes = () => {
+export const useGetAllPeople = () => {
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -13,18 +11,11 @@ export const useGetLikes = () => {
   useEffect(() => {
     const fn = async () => {
       try {
-        await new Promise((resolve) => setTimeout(resolve, 1000))
         setLoading(true)
-        const response = await axios.get(`/api/likes?token=${token}`)
-
         let db = new Localbase('ratatin')
 
-        response.data.data.results.forEach((item) => {
-          db.collection('likes').add(item, item.user._id)
-        })
-
-        const allLikes = await db.collection('likes').get()
-        setData({ results: allLikes })
+        const response = await db.collection('people').get()
+        setData({ results: response })
       } catch (error) {
         console.error(error)
         setError(error)

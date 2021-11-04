@@ -3,7 +3,6 @@ import s from './index.module.css'
 export const Likes = ({ likes }) => (
   <ul className={s.items}>
     {likes.map((like) => {
-      console.log(like)
       const { bio, name, birth_date, photos, type } = like.user
 
       return (
