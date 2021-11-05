@@ -36,3 +36,7 @@
 .navigationItem {
   margin: 0 0.5em;
 }
+
+.navigationItem_active {
+  font-weight: bold;
+}

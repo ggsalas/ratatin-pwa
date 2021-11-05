@@ -1,6 +1,7 @@
+import Localbase from 'localbase'
 import { useEffect, useState } from 'react'
 import { getToken } from '../shared/handleToken'
-import Localbase from 'localbase'
+import { getPeopleWithLikes } from '../shared/matchLikesAndPeople'
 
 export const useGetAllPeople = () => {
   const [data, setData] = useState(null)
@@ -13,9 +14,11 @@ export const useGetAllPeople = () => {
       try {
         setLoading(true)
         let db = new Localbase('ratatin')
+        const people = await db.collection('people').get()
+        const likes = await db.collection('likes').get()
+        const peopleWithLikes = getPeopleWithLikes({ people, likes })
 
-        const response = await db.collection('people').get()
-        setData({ results: response })
+        setData({ results: peopleWithLikes })
       } catch (error) {
         console.error(error)
         setError(error)

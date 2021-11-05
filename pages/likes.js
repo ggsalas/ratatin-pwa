@@ -1,7 +1,7 @@
 import { useGetLikes } from '../hooks/useGetLikes'
 import { Layout } from '../components/Layout'
 import { withAuth } from '../components/withAuth'
-import { Likes } from '../components/Likes'
+import { People } from '../components/People'
 
 const LikesPage = () => {
   const { data, error, loading } = useGetLikes()
@@ -20,16 +20,9 @@ const LikesPage = () => {
       </Layout>
     )
 
-  if (!data)
-    return (
-      <Layout>
-        <p>No data</p>
-      </Layout>
-    )
-
   return (
     <Layout>
-      <Likes likes={data?.results} />
+      <People people={data?.results} />
     </Layout>
   )
 }

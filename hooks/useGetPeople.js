@@ -1,9 +1,8 @@
+import Localbase from 'localbase'
 import { useEffect, useState } from 'react'
 import { getToken } from '../shared/handleToken'
-import Localbase from 'localbase'
-
+import { getPeopleWithLikes } from '../shared/matchLikesAndPeople'
 import axios from 'axios'
-import { mock } from './mockPeople'
 
 export const useGetPeople = () => {
   const [data, setData] = useState(null)
@@ -23,7 +22,13 @@ export const useGetPeople = () => {
           db.collection('people').add(item, item.user._id)
         })
 
-        setData(response.data.data)
+        const likes = await db.collection('likes').get()
+        const peopleWithLikes = getPeopleWithLikes({
+          people: response.data.data.results,
+          likes,
+        })
+
+        setData({ results: peopleWithLikes })
       } catch (error) {
         console.error(error)
         setError(error)

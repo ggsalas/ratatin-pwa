@@ -1,7 +1,7 @@
 import { useGetAllPeople } from '../hooks/useGetAllPeople'
 import { Layout } from '../components/Layout'
 import { withAuth } from '../components/withAuth'
-import { Likes } from '../components/Likes'
+import { People } from '../components/People'
 
 const AllPeoplePage = () => {
   const { data, error, loading } = useGetAllPeople()
@@ -20,16 +20,9 @@ const AllPeoplePage = () => {
       </Layout>
     )
 
-  if (!data)
-    return (
-      <Layout>
-        <p>No data</p>
-      </Layout>
-    )
-
   return (
     <Layout>
-      <Likes likes={data?.results} />
+      <People people={data?.results} />
     </Layout>
   )
 }

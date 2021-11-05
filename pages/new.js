@@ -1,9 +1,9 @@
 import { useGetPeople } from '../hooks/useGetPeople'
 import { Layout } from '../components/Layout'
 import { withAuth } from '../components/withAuth'
-import { Likes } from '../components/Likes'
+import { People } from '../components/People'
 
-const PeoplePage = () => {
+const NewPeoplePage = () => {
   const { data, error, loading } = useGetPeople()
 
   if (error)
@@ -20,18 +20,12 @@ const PeoplePage = () => {
       </Layout>
     )
 
-  if (!data)
-    return (
-      <Layout>
-        <p>No data</p>
-      </Layout>
-    )
-
+  console.log('new data ', data?.results)
   return (
     <Layout>
-      <Likes likes={data?.results} />
+      <People people={data?.results} />
     </Layout>
   )
 }
 
-export default withAuth(PeoplePage)
+export default withAuth(NewPeoplePage)

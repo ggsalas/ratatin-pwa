@@ -1,6 +1,7 @@
+import Localbase from 'localbase'
 import { useEffect, useState } from 'react'
 import { getToken } from '../shared/handleToken'
-import Localbase from 'localbase'
+import { getLikesWithPeopleInfo } from '../shared/matchLikesAndPeople'
 
 import axios from 'axios'
 
@@ -24,7 +25,13 @@ export const useGetLikes = () => {
         })
 
         const allLikes = await db.collection('likes').get()
-        setData({ results: allLikes })
+        const people = await db.collection('people').get()
+        const allLikesWithPeopleInfo = getLikesWithPeopleInfo({
+          people,
+          likes: allLikes,
+        })
+
+        setData({ results: allLikesWithPeopleInfo })
       } catch (error) {
         console.error(error)
         setError(error)

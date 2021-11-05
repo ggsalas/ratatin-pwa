@@ -1,6 +1,19 @@
+import { cloneElement } from 'react'
 import Head from 'next/head'
 import s from './index.module.css'
 import Link from 'next/link'
+import { useRouter } from 'next/router'
+
+const NavLink = ({ href, children }) => {
+  const router = useRouter()
+
+  let className = s.navigationItem
+  if (router.pathname === href) {
+    className = `${s.navigationItem} ${s.navigationItem_active}`
+  }
+
+  return <Link href={href}>{cloneElement(children, { className })}</Link>
+}
 
 export const Layout = ({ children }) => (
   <>
@@ -14,15 +27,23 @@ export const Layout = ({ children }) => (
       </div>
       <div className={s.content}>{children}</div>
       <div className={s.navigation}>
-        <Link href="/people">
-          <a className={s.navigationItem}>people</a>
-        </Link>
-        <Link href="/all-people">
-          <a className={s.navigationItem}>all</a>
-        </Link>
-        <Link href="/likes">
-          <a className={s.navigationItem}>likes</a>
-        </Link>
+        <NavLink href="/new">
+          <a>new</a>
+        </NavLink>
+        <NavLink
+          href="/all-people"
+          className={s.navigationItem}
+          activeClassName={s.navigationItem_active}
+        >
+          <a>all</a>
+        </NavLink>
+        <NavLink
+          href="/likes"
+          className={s.navigationItem}
+          activeClassName={s.navigationItem_active}
+        >
+          <a>likes</a>
+        </NavLink>
         <a
           href="https://tinder.com/app/matches"
           rel="noopener noreferrer"
