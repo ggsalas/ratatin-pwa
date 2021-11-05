@@ -1,0 +1,12 @@
+.actions {
+  background: #000;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  height: 84px;
+}
+
+.button {
+  width: 30%;
+  height: 58px;
+}

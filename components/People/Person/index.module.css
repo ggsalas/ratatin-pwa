@@ -1,0 +1,68 @@
+.page {
+  height: calc(100vh - 48px - 48px - 16px);
+  box-shadow: 0 0 2px rgb(0 0 0 / 40%);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-repeat: no-repeat;
+  background-position: top;
+  background-color: #000000;
+  background-size: cover;
+  position: relative;
+  margin: 8px 4px 16px 4px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.content {
+  color: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 25%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.userData {
+  padding: 20px;
+}
+
+.navigation {
+  position: absolute;
+  top: calc(50% - 29px);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
+.button {
+  height: 78px;
+  font-size: 30px;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  cursor: pointer;
+  outline: none;
+}
+
+.buttonRight {
+  padding: 0 20px 0 16px;
+  border-radius: 8px 0 0 8px;
+  text-align: left;
+}
+
+.buttonLeft {
+  padding: 0 16px 0 20px;
+  border-radius: 0 8px 8px 0;
+  text-align: right;
+}
+
+.button:disabled {
+  opacity: 0.3;
+}

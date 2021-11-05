@@ -20,7 +20,6 @@ const NewPeoplePage = () => {
       </Layout>
     )
 
-  console.log('new data ', data?.results)
   return (
     <Layout>
       <People people={data?.results} />
