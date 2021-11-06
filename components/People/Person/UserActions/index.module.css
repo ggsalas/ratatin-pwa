@@ -1,12 +1,60 @@
 .actions {
   background: #000;
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  justify-content: center;
   height: 84px;
 }
 
+.actions_buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 54px;
+}
+
+.actions_match {
+  background: rgba(21, 137, 81, 1);
+}
+
+.errorMessage {
+  text-align: center;
+  font-size: 0.8em;
+  color: red;
+  margin: -1em 0 1em 0;
+}
+
 .button {
-  width: 30%;
+  width: 40%;
   height: 58px;
+}
+
+.buttonLike {
+  background: rgba(33, 208, 124, 0.2);
+  border: 1px solid rgba(33, 208, 124, 1);
+  border-radius: 29px;
+  color: rgba(33, 208, 124, 1);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.buttonLike:hover,
+.buttonLike:active {
+  background: rgba(33, 208, 124, 0.9);
+  color: white;
+}
+
+.buttonPass {
+  background: rgba(255, 68, 88, 0.2);
+  border: 1px solid rgba(255, 68, 88, 1);
+  border-radius: 29px;
+  color: rgba(255, 68, 88, 1);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.buttonPass:hover,
+.buttonPass:active {
+  background: rgba(255, 68, 88, 0.9);
+  color: white;
 }

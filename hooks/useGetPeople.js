@@ -2,6 +2,7 @@ import Localbase from 'localbase'
 import { useEffect, useState } from 'react'
 import { getToken } from '../shared/handleToken'
 import { getPeopleWithLikes } from '../shared/matchLikesAndPeople'
+import { RATATIN_STATUS } from '../shared/ratatinStatus'
 import axios from 'axios'
 
 export const useGetPeople = () => {
@@ -19,7 +20,10 @@ export const useGetPeople = () => {
         let db = new Localbase('ratatin')
 
         response.data.data.results.forEach((item) => {
-          db.collection('people').add(item, item.user._id)
+          db.collection('people').add(
+            { ...item, ratatinStatus: RATATIN_STATUS.undefined },
+            item.user._id
+          )
         })
 
         const likes = await db.collection('likes').get()

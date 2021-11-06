@@ -31,18 +31,18 @@ export const Layout = ({ children }) => (
           <a>new</a>
         </NavLink>
         <NavLink
-          href="/all-people"
-          className={s.navigationItem}
-          activeClassName={s.navigationItem_active}
-        >
-          <a>all</a>
-        </NavLink>
-        <NavLink
           href="/likes"
           className={s.navigationItem}
           activeClassName={s.navigationItem_active}
         >
           <a>likes</a>
+        </NavLink>
+        <NavLink
+          href="/all-people"
+          className={s.navigationItem}
+          activeClassName={s.navigationItem_active}
+        >
+          <a>all</a>
         </NavLink>
         <a
           href="https://tinder.com/app/matches"

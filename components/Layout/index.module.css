@@ -9,6 +9,9 @@
 .content {
   flex-grow: 1;
   background: #fefefe;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .header {

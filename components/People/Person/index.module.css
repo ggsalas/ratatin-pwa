@@ -1,7 +1,7 @@
 .page {
   height: calc(100vh - 48px - 48px - 16px);
   box-shadow: 0 0 2px rgb(0 0 0 / 40%);
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 0;
   background-repeat: no-repeat;
   background-position: top;
   background-color: #000000;
@@ -26,6 +26,15 @@
   );
 }
 
+.content_hasMatch {
+  background: linear-gradient(
+    0deg,
+    rgba(21, 137, 81, 1) 0%,
+    rgba(21, 137, 81, 1) 25%,
+    rgba(21, 137, 81, 0) 100%
+  );
+}
+
 .userData {
   padding: 20px;
 }
@@ -37,11 +46,12 @@
   display: flex;
   justify-content: space-between;
   padding: 0;
+  z-index: 9;
 }
 
 .button {
-  height: 78px;
-  font-size: 30px;
+  height: 98px;
+  font-size: 24px;
   font-weight: bold;
   background: rgba(0, 0, 0, 0.5);
   color: white;
@@ -52,17 +62,21 @@
 }
 
 .buttonRight {
-  padding: 0 20px 0 16px;
+  padding: 0 16px 0 12px;
   border-radius: 8px 0 0 8px;
   text-align: left;
 }
 
 .buttonLeft {
-  padding: 0 16px 0 20px;
+  padding: 0 12px 0 16px;
   border-radius: 0 8px 8px 0;
   text-align: right;
 }
 
 .button:disabled {
   opacity: 0.3;
+}
+
+.likesYou {
+  color: rgba(33, 208, 124, 1);
 }

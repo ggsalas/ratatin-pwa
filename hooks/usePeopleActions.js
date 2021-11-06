@@ -1,9 +1,11 @@
+import Localbase from 'localbase'
 import { getToken } from '../shared/handleToken'
 import { useState } from 'react'
 import axios from 'axios'
+import { RATATIN_STATUS } from '../shared/ratatinStatus'
 
 export const usePeopleActions = () => {
-  const [isMatch, setIsMatch] = useState(null)
+  const [status, setStatus] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const token = getToken()
@@ -18,8 +20,19 @@ export const usePeopleActions = () => {
           id,
         },
       })
+      const db = new Localbase('ratatin')
+      const getStatus = () => {
+        debugger
+        if (response.data?.match?._id) return RATATIN_STATUS.match
+        if (action === 'like') return RATATIN_STATUS.sendedLike
+        if (action === 'pass') return RATATIN_STATUS.sendedPass
+        return RATATIN_STATUS.undefined
+      }
+      const ratatinStatus = getStatus()
 
-      setIsMatch(response.match)
+      await db.collection('people').doc(id).update({ ratatinStatus })
+
+      setStatus(ratatinStatus)
     } catch (error) {
       console.error(error)
       setError(error)
@@ -31,5 +44,5 @@ export const usePeopleActions = () => {
   const onLike = (id) => setPeopleAction({ action: 'like', id })
   const onPass = (id) => setPeopleAction({ action: 'pass', id })
 
-  return { loading, error, isMatch, onLike, onPass }
+  return { loading, error, status, onLike, onPass }
 }
