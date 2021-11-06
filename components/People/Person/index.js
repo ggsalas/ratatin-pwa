@@ -18,26 +18,26 @@ export const Person = ({ person }) => {
     return [photos[0].url]
   })()
 
-  const onGoPrev = () => setPage((page) => page - 1)
-  const onGoNext = () => setPage((page) => page + 1)
+  const onGoPrev = () =>
+    setPage((page) => {
+      if (page === 0) return photoURLs.length - 1
+      return page - 1
+    })
+  const onGoNext = () =>
+    setPage((page) => {
+      if (page === photoURLs.length - 1) return 0
+      return page + 1
+    })
 
   const navigation = () => {
     if (photoURLs.length === 1) return null
 
     return (
       <div className={s.navigation}>
-        <button
-          onClick={onGoPrev}
-          disabled={page === 0}
-          className={`${s.button} ${s.buttonLeft}`}
-        >
+        <button onClick={onGoPrev} className={`${s.button} ${s.buttonLeft}`}>
           ←
         </button>
-        <button
-          onClick={onGoNext}
-          disabled={page === photoURLs.length - 1}
-          className={`${s.button} ${s.buttonRight}`}
-        >
+        <button onClick={onGoNext} className={`${s.button} ${s.buttonRight}`}>
           →
         </button>
       </div>

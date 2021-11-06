@@ -10,13 +10,15 @@ export default function Home() {
 
   useEffect(() => {
     const token = getToken()
-    if (token) return router.push('/likes')
+    if (token) return router.push('/new')
   }, [router])
 
   return (
     <Layout>
       <div className={styles.container}>
-        If you are a 🐀 mice like me, you are covered!!!
+        <h2>Tinder clone that displays hidden data.</h2>
+        <p>For 🐀 pepple</p>
+        <p>😆</p>
         <button onClick={() => router.push('/login')}>Login</button>
       </div>
     </Layout>

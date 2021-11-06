@@ -13,15 +13,31 @@ class MyDocument extends Document {
           <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
           <meta name="application-name" content="ratatin" />
           <meta name="description" content="ratatin" />
-          <meta name="keywords" content="Keywords" />
-
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/icons/apple-touch-icon.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/icons/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/icons/favicon-16x16.png"
+          />
+          <link
+            rel="mask-icon"
+            href="/icons/safari-pinned-tab.svg"
+            color="#5bbad5"
+          />
+          <meta name="msapplication-TileColor" content="#ff4357" />
+          <meta name="theme-color" content="#ffffff" />
           <link rel="manifest" href="/manifest.json" />
-          <link rel="icon" href="/icons/favicon.ico" />
-          <link rel="icon" href="/icons/favicon.svg" type="image/svg+xml" />
-          <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
-          <link rel="manifest" href="/manifest.json" />
-          <meta name="theme-color" content="#ff4357" />
-          <link rel="shortcut icon" href="/icons/favicon.ico" />
         </Head>
         <body>
           <Main />

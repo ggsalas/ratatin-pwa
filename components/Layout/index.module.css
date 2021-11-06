@@ -37,10 +37,11 @@
   height: 48px;
   flex-shrink: 0;
   box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.3);
+  z-index: 10;
 }
 
 .navigationItem {
-  margin: 0 0.5em;
+  margin: 0 1em;
 }
 
 .navigationItem_active {

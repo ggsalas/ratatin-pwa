@@ -21,7 +21,7 @@ const LikesPage = () => {
     )
 
   return (
-    <Layout>
+    <Layout withNavigation>
       <People people={data?.results} />
     </Layout>
   )

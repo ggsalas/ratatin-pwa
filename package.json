@@ -1,5 +1,5 @@
 {
-  "name": "ratatin-nextjs",
+  "name": "ratatinApp",
   "private": true,
   "scripts": {
     "dev": "PORT=3111 next dev",

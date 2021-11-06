@@ -8,20 +8,20 @@ const NewPeoplePage = () => {
 
   if (error)
     return (
-      <Layout>
+      <Layout withNavigation>
         <p>Error getting data</p>
       </Layout>
     )
 
   if (loading)
     return (
-      <Layout>
+      <Layout withNavigation>
         <p>Loading...</p>
       </Layout>
     )
 
   return (
-    <Layout>
+    <Layout withNavigation>
       <People people={data?.results} />
     </Layout>
   )

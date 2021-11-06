@@ -3,6 +3,7 @@ import Head from 'next/head'
 import s from './index.module.css'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import Image from 'next/image'
 
 const NavLink = ({ href, children }) => {
   const router = useRouter()
@@ -15,7 +16,7 @@ const NavLink = ({ href, children }) => {
   return <Link href={href}>{cloneElement(children, { className })}</Link>
 }
 
-export const Layout = ({ children }) => (
+export const Layout = ({ children, withNavigation }) => (
   <>
     <Head>
       <title>RataTin</title>
@@ -23,36 +24,44 @@ export const Layout = ({ children }) => (
 
     <section className={s.Layout}>
       <div className={s.header}>
-        <img src="/ratatin.svg" height="24" alt="ratatin" />
+        <Link href="/">
+          <a>
+            <Image src="/ratatin.svg" height="24" width="104" alt="ratatin" />
+          </a>
+        </Link>
       </div>
+
       <div className={s.content}>{children}</div>
-      <div className={s.navigation}>
-        <NavLink href="/new">
-          <a>new</a>
-        </NavLink>
-        <NavLink
-          href="/likes"
-          className={s.navigationItem}
-          activeClassName={s.navigationItem_active}
-        >
-          <a>likes</a>
-        </NavLink>
-        <NavLink
-          href="/all-people"
-          className={s.navigationItem}
-          activeClassName={s.navigationItem_active}
-        >
-          <a>all</a>
-        </NavLink>
-        <a
-          href="https://tinder.com/app/matches"
-          rel="noopener noreferrer"
-          target="_blank"
-          className={s.navigationItem}
-        >
-          matches↗
-        </a>
-      </div>
+
+      {withNavigation && (
+        <div className={s.navigation}>
+          <NavLink href="/new">
+            <a>New</a>
+          </NavLink>
+          <NavLink
+            href="/likes"
+            className={s.navigationItem}
+            activeClassName={s.navigationItem_active}
+          >
+            <a>Likes</a>
+          </NavLink>
+          <NavLink
+            href="/all-people"
+            className={s.navigationItem}
+            activeClassName={s.navigationItem_active}
+          >
+            <a>All</a>
+          </NavLink>
+          <a
+            href="https://tinder.com/app/matches"
+            rel="noopener noreferrer"
+            target="_blank"
+            className={s.navigationItem}
+          >
+            Chat↗
+          </a>
+        </div>
+      )}
     </section>
   </>
 )

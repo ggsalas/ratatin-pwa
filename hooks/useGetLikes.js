@@ -2,6 +2,7 @@ import Localbase from 'localbase'
 import { useEffect, useState } from 'react'
 import { getToken } from '../shared/handleToken'
 import { getLikesWithPeopleInfo } from '../shared/matchLikesAndPeople'
+import { updateMatches } from '../shared/updateMatches'
 
 import axios from 'axios'
 
@@ -26,6 +27,8 @@ export const useGetLikes = () => {
 
         const allLikes = await db.collection('likes').get()
         const people = await db.collection('people').get()
+        await updateMatches()
+
         const allLikesWithPeopleInfo = getLikesWithPeopleInfo({
           people,
           likes: allLikes,
