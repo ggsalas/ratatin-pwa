@@ -2,6 +2,7 @@ import { useGetLikes } from '../hooks/useGetLikes'
 import { Layout } from '../components/Layout'
 import { withAuth } from '../components/withAuth'
 import { People } from '../components/People'
+import { DataError } from '../components/DataError'
 
 const LikesPage = () => {
   const { data, error, loading } = useGetLikes()
@@ -9,7 +10,7 @@ const LikesPage = () => {
   if (error)
     return (
       <Layout>
-        <p>Error getting data</p>
+        <DataError />
       </Layout>
     )
 

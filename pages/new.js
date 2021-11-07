@@ -2,6 +2,7 @@ import { useGetPeople } from '../hooks/useGetPeople'
 import { Layout } from '../components/Layout'
 import { withAuth } from '../components/withAuth'
 import { People } from '../components/People'
+import { DataError } from '../components/DataError'
 
 const NewPeoplePage = () => {
   const { data, error, loading } = useGetPeople()
@@ -9,7 +10,7 @@ const NewPeoplePage = () => {
   if (error)
     return (
       <Layout withNavigation>
-        <p>Error getting data</p>
+        <DataError />
       </Layout>
     )
 

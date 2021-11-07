@@ -2,6 +2,7 @@ import { useGetAllPeople } from '../hooks/useGetAllPeople'
 import { Layout } from '../components/Layout'
 import { withAuth } from '../components/withAuth'
 import { People } from '../components/People'
+import { DataError } from '../components/DataError'
 
 const AllPeoplePage = () => {
   const { data, error, loading } = useGetAllPeople()
@@ -9,7 +10,7 @@ const AllPeoplePage = () => {
   if (error)
     return (
       <Layout withNavigation>
-        <p>Error getting data</p>
+        <DataError />
       </Layout>
     )
 
