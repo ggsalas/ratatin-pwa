@@ -22,7 +22,6 @@ export const usePeopleActions = () => {
       })
       const db = new Localbase('ratatin')
       const getStatus = () => {
-        debugger
         if (response.data?.match?._id) return RATATIN_STATUS.match
         if (action === 'like') return RATATIN_STATUS.sendedLike
         if (action === 'pass') return RATATIN_STATUS.sendedPass

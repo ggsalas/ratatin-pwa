@@ -26,6 +26,10 @@
   margin: 0;
 }
 
+.form li {
+  margin: 0 0 0.5em 0;
+}
+
 .bookmarklet {
   border: 1px solid #ccc;
   background: #eee;
@@ -34,4 +38,17 @@
   border-radius: 6px;
   width: 100%;
   white-space: break-spaces;
+}
+
+.copyCode {
+  position: relative;
+  display: initial;
+}
+
+.copyCode_notification {
+  position: absolute;
+  top: -1.4em;
+  left: 0.4em;
+  background: #fff;
+  color: green;
 }

@@ -15,9 +15,15 @@ export const useGetAllPeople = () => {
       try {
         setLoading(true)
         const db = new Localbase('ratatin')
-        const people = await db.collection('people').get()
-        const likes = await db.collection('likes').get()
         await updateMatches()
+        const people = await db
+          .collection('people')
+          .orderBy('ratatinUpdatedAt', 'desc')
+          .get()
+        const likes = await db
+          .collection('likes')
+          .orderBy('ratatinUpdatedAt', 'desc')
+          .get()
 
         const peopleWithLikes = getPeopleWithLikes({ people, likes })
 

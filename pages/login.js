@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { useRouter } from 'next/router'
 
@@ -11,6 +11,7 @@ const Login = () => {
   const router = useRouter()
   const formRef = useRef()
   const bookmarklet = useRef()
+  const [copyCode, setCopyCode] = useState(false)
 
   useEffect(() => {
     const token = getToken()
@@ -34,9 +35,11 @@ const Login = () => {
     }
   }
 
-  const onCopyBookmarklet = () => {
+  const onCopyBookmarklet = async () => {
     const text = bookmarklet.current.innerText
-    copyTextToClipboard(text)
+    await copyTextToClipboard(text)
+    setCopyCode(true)
+    setTimeout(() => setCopyCode(false), 800)
   }
 
   return (
@@ -46,16 +49,21 @@ const Login = () => {
           <p>Steps to get the Tinder Token:</p>
           <ol>
             <li>
-              Copy this code and create a bookmarklet {` `}
-              <button onClick={onCopyBookmarklet} type="button">
-                Copy code
-              </button>
+              {`Copy this code and add as a "favorite" in your browser `}
+              <div className={s.copyCode}>
+                <button onClick={onCopyBookmarklet} type="button">
+                  Copy code
+                </button>
+                {copyCode && (
+                  <span className={s.copyCode_notification}>Copied!</span>
+                )}
+              </div>
               <pre className={s.bookmarklet} ref={bookmarklet}>
                 {`javascript:window.prompt('Copy to clipboard: Ctrl+C, Enter', localStorage.getItem('TinderWeb/APIToken'))`}
               </pre>
             </li>
             <li>
-              Login into{' '}
+              {'Login into '}
               <a
                 href="http://tinder.com"
                 rel="noopener noreferrer"
@@ -63,10 +71,11 @@ const Login = () => {
               >
                 tinder.com
               </a>
-              <li>In tinder.com page and go to the saved bookmarklet</li>
-              <li>Copy the token in the prompt</li>
-              <li>Paste the token here:</li>
+              {` using your browser`}
             </li>
+            <li>{`In tinder.com page, go to the saved "favorite"`}</li>
+            <li>Copy the token that you see in the prompt</li>
+            <li>Paste the token here:</li>
           </ol>
           <input type="text" name="token" placeholder="Tinder Token" required />
           <button type="submit">Login</button>

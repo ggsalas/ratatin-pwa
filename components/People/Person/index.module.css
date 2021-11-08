@@ -53,12 +53,19 @@
   height: 98px;
   font-size: 24px;
   font-weight: bold;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
+  background: rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.3);
   overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(0, 0, 0, 0.1);
   cursor: pointer;
   outline: none;
+}
+
+.button:hover,
+.button:active {
+  background: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 .buttonRight {
@@ -79,4 +86,32 @@
 
 .likesYou {
   color: rgba(33, 208, 124, 1);
+}
+
+.topNavigation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 16px;
+  background: transparent;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin: 0 -3px;
+  padding: 0px 14px;
+  left: 0;
+  cursor: pointer;
+}
+
+.topNavigation_page {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0 3px;
+  flex-grow: 1;
+}
+
+.topNavigation_page:hover,
+.topNavigation_page_selected {
+  background: rgba(255, 255, 255, 0.6);
 }

@@ -19,14 +19,21 @@ export const useGetPeople = () => {
 
         let db = new Localbase('ratatin')
 
-        response.data.data.results.forEach((item) => {
+        response.data.data.results.forEach((person) => {
           db.collection('people').add(
-            { ...item, ratatinStatus: RATATIN_STATUS.undefined },
-            item.user._id
+            {
+              ...person,
+              ratatinUpdatedAt: Date.now(),
+              ratatinStatus: RATATIN_STATUS.undefined,
+            },
+            person.user._id
           )
         })
 
-        const likes = await db.collection('likes').get()
+        const likes = await db
+          .collection('likes')
+          .orderBy('ratatinUpdatedAt', 'desc')
+          .get()
         const peopleWithLikes = getPeopleWithLikes({
           people: response.data.data.results,
           likes,

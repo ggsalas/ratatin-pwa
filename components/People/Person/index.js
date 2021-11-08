@@ -29,6 +29,24 @@ export const Person = ({ person }) => {
       return page + 1
     })
 
+  const topNavigation = () => {
+    if (photoURLs.length > 2)
+      return (
+        <div className={s.topNavigation}>
+          {photoURLs.map((photo, i) => (
+            <div
+              key={photo.url}
+              className={`${s.topNavigation_page} ${
+                page === i ? s.topNavigation_page_selected : ''
+              }`}
+              onClick={() => setPage(i)}
+            />
+          ))}
+        </div>
+      )
+    return null
+  }
+
   const navigation = () => {
     if (photoURLs.length === 1) return null
 
@@ -49,6 +67,7 @@ export const Person = ({ person }) => {
       className={s.page}
       style={{ backgroundImage: `url('${photoURLs[page]}')` }}
     >
+      {topNavigation()}
       {navigation()}
 
       <div className={`${s.content} ${isMatch ? s.content_hasMatch : ''}`}>
@@ -82,7 +101,22 @@ export const Person = ({ person }) => {
       className={s.page}
       style={{ backgroundImage: `url('${photoURLs[page]}')` }}
     >
+      {topNavigation()}
       {navigation()}
+      <div className={`${s.content} ${isMatch ? s.content_hasMatch : ''}`}>
+        <UserActions
+          {...{
+            id: _id,
+            onPass,
+            onLike,
+            error,
+            loading,
+            isPerson: type === 'user',
+            isMatch,
+            ratatinStatus: status || ratatinStatus,
+          }}
+        />
+      </div>
     </div>
   )
 

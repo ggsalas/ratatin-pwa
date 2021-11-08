@@ -15,19 +15,27 @@ export const useGetLikes = () => {
   useEffect(() => {
     const fn = async () => {
       try {
-        await new Promise((resolve) => setTimeout(resolve, 1000))
         setLoading(true)
         const response = await axios.get(`/api/likes?token=${token}`)
 
         let db = new Localbase('ratatin')
 
-        response.data.data.results.forEach((item) => {
-          db.collection('likes').add(item, item.user._id)
+        response.data.data.results.forEach((like) => {
+          db.collection('likes').add(
+            { ...like, ratatinUpdatedAt: Date.now() },
+            like.user._id
+          )
         })
 
-        const allLikes = await db.collection('likes').get()
-        const people = await db.collection('people').get()
         await updateMatches()
+        const allLikes = await db
+          .collection('likes')
+          .orderBy('ratatinUpdatedAt', 'desc')
+          .get()
+        const people = await db
+          .collection('people')
+          .orderBy('ratatinUpdatedAt', 'desc')
+          .get()
 
         const allLikesWithPeopleInfo = getLikesWithPeopleInfo({
           people,

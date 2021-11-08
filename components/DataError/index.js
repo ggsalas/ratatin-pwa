@@ -6,7 +6,7 @@ export const DataError = () => (
     <p>Error getting data</p>
 
     <p>Please login again to refresh the Tinder Token</p>
-    <Link href="/logout">
+    <Link href="/logout" passHref>
       <button>Login</button>
     </Link>
   </div>
