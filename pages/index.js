@@ -20,6 +20,15 @@ export default function Home() {
         <p>For 🐀 pepple</p>
         <p>😆</p>
         <button onClick={() => router.push('/login')}>Login</button>
+        <p>
+          <a
+            href="https://github.com/ggsalas/ratatinApp"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            Read the code on Github
+          </a>
+        </p>
       </div>
     </Layout>
   )

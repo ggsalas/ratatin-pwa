@@ -7,7 +7,12 @@
   margin: 1em 0;
 }
 
-.container p,
+.container p {
+  font-size: 18px;
+  margin: 1em;
+}
+
 .container button {
   font-size: 18px;
+  padding: 0.5em 1em;
 }
