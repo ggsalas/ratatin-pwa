@@ -7,8 +7,12 @@ const Logout = () => {
   const router = useRouter()
 
   useEffect(() => {
-    removeToken()
-    router.push('/login')
+    const fn = async () => {
+      await removeToken()
+      router.push('/login')
+    }
+
+    fn()
   }, [router])
 
   return null

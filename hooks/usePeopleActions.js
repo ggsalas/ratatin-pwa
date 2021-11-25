@@ -8,11 +8,11 @@ export const usePeopleActions = () => {
   const [status, setStatus] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
-  const token = getToken()
 
   const setPeopleAction = async ({ action, id }) => {
     try {
       setLoading(true)
+      const token = await getToken()
       const response = await axios.get('/api/people-action', {
         params: {
           token,

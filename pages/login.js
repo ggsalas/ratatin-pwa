@@ -3,7 +3,8 @@ import { useEffect, useRef, useState } from 'react'
 import { useRouter } from 'next/router'
 
 import { Layout } from '../components/Layout'
-import { getToken, saveToken } from '../shared/handleToken'
+import { saveToken } from '../shared/handleToken'
+import { useGetToken } from '../hooks/useToken'
 
 import s from '../styles/Login.module.css'
 
@@ -12,18 +13,17 @@ const Login = () => {
   const formRef = useRef()
   const bookmarklet = useRef()
   const [copyCode, setCopyCode] = useState(false)
+  const token = useGetToken()
 
   useEffect(() => {
-    const token = getToken()
-
     if (token) router.push('/')
-  }, [router])
+  }, [router, token])
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
     const token = formRef.current.token.value
 
-    saveToken(token)
+    await saveToken(token)
     router.push('/')
   }
 

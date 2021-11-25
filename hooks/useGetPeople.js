@@ -9,12 +9,12 @@ export const useGetPeople = () => {
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
-  const token = getToken()
 
   useEffect(() => {
     const fn = async () => {
       try {
         setLoading(true)
+        const token = await getToken()
         const response = await axios.get(`/api/people?token=${token}`)
 
         let db = new Localbase('ratatin')
@@ -49,7 +49,7 @@ export const useGetPeople = () => {
     }
 
     fn()
-  }, [token])
+  }, [])
 
   return { data, error, loading }
 }

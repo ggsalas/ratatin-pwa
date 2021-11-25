@@ -16,7 +16,7 @@ const LikesPage = () => {
 
   if (loading)
     return (
-      <Layout>
+      <Layout withNavigation>
         <p>Loading...</p>
       </Layout>
     )

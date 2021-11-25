@@ -1,13 +1,17 @@
-import { getToken } from '../shared/handleToken'
+import { useGetToken } from '../hooks/useToken'
 import Login from '../pages/login'
 
 export const withAuth = (Component) => {
   const Auth = (props) => {
-    const token = getToken()
+    const token = useGetToken()
 
     // If user is not logged in, go to login
-    if (!token) {
+    if (token === null) {
       return <Login />
+    }
+
+    if (token === undefined) {
+      return <p>Loading...</p>
     }
 
     // If user is logged in, return original component
