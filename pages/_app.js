@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }) {
             )
           },
           function (err) {
-            console.log('Service Worker registration failed: ', err)
+            console.error('Service Worker registration failed: ', err)
           }
         )
       })

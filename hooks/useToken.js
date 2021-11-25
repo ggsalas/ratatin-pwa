@@ -14,6 +14,5 @@ export const useGetToken = () => {
     fn()
   }, [])
 
-  console.log('get token ', token)
   return token
 }
