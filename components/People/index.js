@@ -2,9 +2,10 @@ import s from './index.module.css'
 import { Person } from './Person'
 
 export const People = ({ people }) => {
-  if (!people || !people.length) return null
+  if (!people) return null
 
-  if (people.length === 0) return <span>No people</span>
+  if (people.length === 0)
+    return <span className={s.noPeople}>No people here</span>
 
   return (
     <ul className={s.items}>
