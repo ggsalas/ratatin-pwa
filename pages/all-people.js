@@ -23,7 +23,7 @@ const AllPeoplePage = () => {
 
   return (
     <Layout withNavigation>
-      <People people={data?.results ?? []} />
+      <People people={data?.results ?? []} withSmallCard />
     </Layout>
   )
 }

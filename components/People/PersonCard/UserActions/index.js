@@ -10,6 +10,7 @@ export const UserActions = ({
   isPerson,
   ratatinStatus,
   isMatch,
+  retry,
 }) => {
   if (!isPerson) return null
 
@@ -18,10 +19,10 @@ export const UserActions = ({
 
     if (isMatch) return <span>Is a match!</span>
 
-    if (ratatinStatus === RATATIN_STATUS.sendedLike)
+    if (!retry && ratatinStatus === RATATIN_STATUS.sendedLike)
       return <span>Like sended</span>
 
-    if (ratatinStatus === RATATIN_STATUS.sendedPass)
+    if (!retry && ratatinStatus === RATATIN_STATUS.sendedPass)
       return <span>User not Liked</span>
 
     return (

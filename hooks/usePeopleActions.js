@@ -4,7 +4,7 @@ import { useState } from 'react'
 import axios from 'axios'
 import { RATATIN_STATUS } from '../shared/ratatinStatus'
 
-export const usePeopleActions = () => {
+export const usePeopleActions = ({ onSuccess }) => {
   const [status, setStatus] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
@@ -32,6 +32,7 @@ export const usePeopleActions = () => {
       await db.collection('people').doc(id).update({ ratatinStatus })
 
       setStatus(ratatinStatus)
+      onSuccess()
     } catch (error) {
       console.error(error)
       setError(error)

@@ -1,7 +1,7 @@
 import s from './index.module.css'
 import { Person } from './Person'
 
-export const People = ({ people }) => {
+export const People = ({ people, withSmallCard }) => {
   if (!people) return null
 
   if (people.length === 0)
@@ -9,13 +9,13 @@ export const People = ({ people }) => {
 
   return (
     <ul className={s.items}>
-      {people.map((person) => {
-        return (
-          <li key={person.user._id} className={s.item}>
-            <Person person={person} />
-          </li>
-        )
-      })}
+      {people.map((person) => (
+        <Person
+          key={person.user._id}
+          person={person}
+          withSmallCard={withSmallCard}
+        />
+      ))}
     </ul>
   )
 }

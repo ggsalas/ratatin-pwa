@@ -1,126 +1,55 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
+import { PersonCard } from '../PersonCard'
+import { PersonSmallCard } from '../PersonSmallCard'
 import { usePeopleActions } from '../../../hooks/usePeopleActions'
-import { UserActions } from './UserActions'
 import { RATATIN_STATUS } from '../../../shared/ratatinStatus'
-
 import s from './index.module.css'
 
-export const Person = ({ person }) => {
-  const [page, setPage] = useState(0)
-  const { loading, error, status, onLike, onPass } = usePeopleActions()
-  const { user, ratatinStatus, type } = person
-  const { bio, name, birth_date, photos, _id } = user
-  const isMatch = status === RATATIN_STATUS.match
-  const photoURLs = (() => {
-    if (type === 'user')
-      return [photos[0].url, ...photos.map((photo) => photo.url)]
+export const Person = ({ person, withSmallCard }) => {
+  const personRef = useRef(null)
+  const [retry, setRetry] = useState(false)
 
-    return [photos[0].url]
-  })()
-
-  const onGoPrev = () =>
-    setPage((page) => {
-      if (page === 0) return photoURLs.length - 1
-      return page - 1
+  const onScrollCard = () => {
+    window.scrollTo({
+      top: personRef.current.offsetTop - 56,
+      left: 0,
+      behavior: 'smooth',
     })
-  const onGoNext = () =>
-    setPage((page) => {
-      if (page === photoURLs.length - 1) return 0
-      return page + 1
-    })
-
-  const topNavigation = () => {
-    if (photoURLs.length > 2)
-      return (
-        <div className={s.topNavigation}>
-          {photoURLs.map((photo, i) => (
-            <div
-              key={`${i}-nav`}
-              className={`${s.topNavigation_page} ${
-                page === i ? s.topNavigation_page_selected : ''
-              }`}
-              onClick={() => setPage(i)}
-            />
-          ))}
-        </div>
-      )
-    return null
   }
 
-  const navigation = () => {
-    if (photoURLs.length === 1) return null
-
-    return (
-      <div className={s.navigation}>
-        <button onClick={onGoPrev} className={`${s.button} ${s.buttonLeft}`}>
-          ←
-        </button>
-        <button onClick={onGoNext} className={`${s.button} ${s.buttonRight}`}>
-          →
-        </button>
-      </div>
-    )
+  const onToggleRetry = () => {
+    setRetry((st) => !st)
+    onScrollCard()
   }
 
-  const firstPage = () => (
-    <div
-      className={s.page}
-      style={{ backgroundImage: `url('${photoURLs[page]}')` }}
-    >
-      {topNavigation()}
-      {navigation()}
+  const onSuccess = () => {
+    if (retry === true) setRetry(false)
+    onScrollCard()
+  }
 
-      <div className={`${s.content} ${isMatch ? s.content_hasMatch : ''}`}>
-        <div className={s.userData}>
-          {name && <h3>{name}</h3>}
-          {birth_date && <p>{new Date(birth_date).toLocaleDateString()}</p>}
-          {bio && <p>{bio}</p>}
-          {person.likesYou && !isMatch && (
-            <span className={s.likesYou}>Seems he Likes You</span>
-          )}
-        </div>
+  const { status, ...actions } = usePeopleActions({
+    onSuccess: onSuccess,
+  })
 
-        <UserActions
-          {...{
-            id: _id,
-            onPass,
-            onLike,
-            error,
-            loading,
-            isPerson: type === 'user',
-            isMatch,
-            ratatinStatus: status || ratatinStatus,
-          }}
+  const personStatus = status || person.ratatinStatus
+
+  return (
+    <li key={person.user._id} className={s.item} ref={personRef}>
+      {!retry && withSmallCard && personStatus !== RATATIN_STATUS.undefined ? (
+        <PersonSmallCard
+          person={person}
+          actions={actions}
+          status={personStatus}
+          onToggleRetry={onToggleRetry}
         />
-      </div>
-    </div>
-  )
-
-  const imagePage = () => (
-    <div
-      className={s.page}
-      style={{ backgroundImage: `url('${photoURLs[page]}')` }}
-    >
-      {topNavigation()}
-      {navigation()}
-      <div className={`${s.content} ${isMatch ? s.content_hasMatch : ''}`}>
-        <UserActions
-          {...{
-            id: _id,
-            onPass,
-            onLike,
-            error,
-            loading,
-            isPerson: type === 'user',
-            isMatch,
-            ratatinStatus: status || ratatinStatus,
-          }}
+      ) : (
+        <PersonCard
+          person={person}
+          actions={actions}
+          status={personStatus}
+          retry={retry}
         />
-      </div>
-    </div>
+      )}
+    </li>
   )
-
-  if (page === 0 && type === 'user') return firstPage()
-
-  return imagePage()
 }

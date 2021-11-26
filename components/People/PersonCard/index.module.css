@@ -1,0 +1,117 @@
+.page {
+  height: calc(100vh - 48px - 48px - 16px);
+  box-shadow: 0 0 2px rgb(0 0 0 / 40%);
+  border: 0;
+  background-repeat: no-repeat;
+  background-position: top;
+  background-color: #000000;
+  background-size: cover;
+  position: relative;
+  margin: 8px 4px 16px 4px;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.content {
+  color: white;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 25%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.content_hasMatch {
+  background: linear-gradient(
+    0deg,
+    rgba(21, 137, 81, 1) 0%,
+    rgba(21, 137, 81, 1) 25%,
+    rgba(21, 137, 81, 0) 100%
+  );
+}
+
+.userData {
+  padding: 20px;
+}
+
+.navigation {
+  position: absolute;
+  top: calc(50% - 29px);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+  z-index: 9;
+}
+
+.button {
+  height: 98px;
+  font-size: 24px;
+  font-weight: bold;
+  background: rgba(0, 0, 0, 0.2);
+  color: rgba(255, 255, 255, 0.3);
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  outline: none;
+}
+
+.button:hover,
+.button:active {
+  background: rgba(0, 0, 0, 0.5);
+  color: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.buttonRight {
+  padding: 0 16px 0 12px;
+  border-radius: 8px 0 0 8px;
+  text-align: left;
+}
+
+.buttonLeft {
+  padding: 0 12px 0 16px;
+  border-radius: 0 8px 8px 0;
+  text-align: right;
+}
+
+.button:disabled {
+  opacity: 0.3;
+}
+
+.likesYou {
+  color: rgba(33, 208, 124, 1);
+}
+
+.topNavigation {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 16px;
+  background: transparent;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  margin: 0 -3px;
+  padding: 0px 14px;
+  left: 0;
+  cursor: pointer;
+}
+
+.topNavigation_page {
+  height: 6px;
+  border-radius: 3px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 0 3px;
+  flex-grow: 1;
+}
+
+.topNavigation_page:hover,
+.topNavigation_page_selected {
+  background: rgba(255, 255, 255, 0.6);
+}
