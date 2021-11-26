@@ -19,7 +19,7 @@ export const useGetPeople = () => {
 
         let db = new Localbase('ratatin')
 
-        response.data.data.results.forEach((person) => {
+        response.data.data.results?.forEach((person) => {
           db.collection('people').add(
             {
               ...person,

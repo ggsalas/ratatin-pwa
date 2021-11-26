@@ -20,7 +20,7 @@ export const useGetLikes = () => {
 
         let db = new Localbase('ratatin')
 
-        response.data.data.results.forEach((like) => {
+        response.data.data.results?.forEach((like) => {
           db.collection('likes').add(
             { ...like, ratatinUpdatedAt: Date.now() },
             like.user._id
