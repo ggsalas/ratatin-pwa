@@ -23,7 +23,7 @@ const NewPeoplePage = () => {
 
   return (
     <Layout withNavigation>
-      <People people={data?.results} />
+      <People people={data?.results ?? []} />
     </Layout>
   )
 }
