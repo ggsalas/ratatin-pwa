@@ -1,6 +1,5 @@
 import Localbase from 'localbase'
 import { useEffect, useState } from 'react'
-import { getToken } from '../shared/handleToken'
 import { getPeopleWithLikes } from '../shared/matchLikesAndPeople'
 import { updateMatches } from '../shared/updateMatches'
 
@@ -8,7 +7,6 @@ export const useGetAllPeople = () => {
   const [data, setData] = useState(null)
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
-  const token = getToken()
 
   useEffect(() => {
     const fn = async () => {
@@ -37,7 +35,7 @@ export const useGetAllPeople = () => {
     }
 
     fn()
-  }, [token])
+  }, [])
 
   return { data, error, loading }
 }

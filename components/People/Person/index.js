@@ -35,7 +35,7 @@ export const Person = ({ person }) => {
         <div className={s.topNavigation}>
           {photoURLs.map((photo, i) => (
             <div
-              key={photo.url}
+              key={`${i}-nav`}
               className={`${s.topNavigation_page} ${
                 page === i ? s.topNavigation_page_selected : ''
               }`}
